@@ -1,5 +1,10 @@
 - Taggat is a simple cross-platform file organizer application that allows you to associate files with tags and then filter by tags
-- For backups, the taggat.db file contains all the tagging data but make sure your filepaths are the same when restoring it
+- For backups, the **taggat.db** file contains all the tagging data but make sure your filepaths are the same when restoring it
+
+Running the application:
+- Requires latest JDK 
+- Create your own build in `target` directory: `mvn clean install` (Requires Apache Maven) or download latest version from releases
+- Run by double clicking `Taggat-1.0.0.jar` or run `java -jar Taggat-1.0.0.jar` from terminal
 
 ![Taggat Screenshot](https://github.com/ashtonhogan/Taggat/blob/main/screenshot.png?raw=true)
 
