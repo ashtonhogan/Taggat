@@ -2,8 +2,8 @@
 - For backups, the **taggat.db** file contains all the tagging data but make sure your filepaths are the same when restoring it
 
 Running the application:
-- Requires latest JDK 
-- Create your own build in `target` directory: `mvn clean install` (Requires Apache Maven) or download latest version from releases
+- Requires latest JVM/JDK 
+- Create your own build: `mvn clean install` (Requires Apache Maven, will create jar in `target` directory) or download latest version from releases
 - Run by double clicking `Taggat-1.0.0.jar` or run `java -jar Taggat-1.0.0.jar` from terminal
 
 ![Taggat Screenshot](https://github.com/ashtonhogan/Taggat/blob/main/screenshot.png?raw=true)
@@ -26,6 +26,7 @@ Tags
 - Add new column to persist tag color to db table
 - Load tags in DB on start
 - Improve styling of tags:
+    - More Padding and margins around tags
     - Less height in new tag input field
     - Single uniform component which contains a checkbox, input field and floppy icon to save the tag
 - Move apply button to float right of tabs so it's clear that it's purpose is to save tag to photo relationships
