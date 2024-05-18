@@ -259,7 +259,7 @@ public class Taggat {
         });
 
         // Delete Tag Button
-        JButton deleteTagButton = new JButton("Delete Selected Tag");
+        JButton deleteTagButton = new JButton("Delete");
         deleteTagButton.addActionListener(e -> {
             if (selectedTag != null) {
                 for (Component comp : tagsContentPanel.getComponents()) {
@@ -279,33 +279,8 @@ public class Taggat {
         });
         tagsTopPanel.add(deleteTagButton);
 
-        // Apply Button to persist tag-to-photo relationships
-        JButton applyButton = new JButton("Apply");
-        applyButton.addActionListener(e -> {
-            if (selectedTag != null) {
-                // Save the selected tag and image information to the database
-                for (Component comp : rightPanel.getComponents()) {
-                    if (comp instanceof JLabel) {
-                        JLabel label = (JLabel) comp;
-                        if (label.getBorder() != null) { // Check if the thumbnail is selected
-                            File file = new File(label.getText());
-                            DatabaseUtility databaseUtility = new DatabaseUtility();
-                            try {
-                                databaseUtility.createFile(file);
-                                databaseUtility.createTag(selectedTag);
-                                databaseUtility.createFilesTagsRelationship(file, selectedTag);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(Taggat.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        tagsTopPanel.add(applyButton);
-
         // Update Tag Button
-        JButton updateTagButton = new JButton("Update Selected Tag");
+        JButton updateTagButton = new JButton("Update");
         updateTagButton.addActionListener(e -> {
             if (selectedTag != null) {
                 JTextField updateTagField = new JTextField(selectedTag);
@@ -343,16 +318,15 @@ public class Taggat {
         });
         tagsTopPanel.add(updateTagButton);
 
-        // Save Button on Right Panel
-        JButton saveButton = new JButton("Save");
-        saveButton.addActionListener(e -> {
+        // Apply Button to persist tag-to-photo relationships
+        JButton applyButton = new JButton("Apply");
+        applyButton.addActionListener(e -> {
             if (selectedTag != null) {
                 // Save the selected tag and image information to the database
                 for (Component comp : rightPanel.getComponents()) {
                     if (comp instanceof JLabel) {
                         JLabel label = (JLabel) comp;
                         if (label.getBorder() != null) { // Check if the thumbnail is selected
-                            // Save the file path, tag, and relationship to the database
                             File file = new File(label.getText());
                             DatabaseUtility databaseUtility = new DatabaseUtility();
                             try {
@@ -367,16 +341,16 @@ public class Taggat {
                 }
             }
         });
-        rightPanel.add(saveButton);
+        tagsTopPanel.add(applyButton);
 
-        // Settings tab
+        // Search tab
         JPanel settingsPanel = new JPanel(new BorderLayout());
         // Remaining code for the Settings panel...
 
         // Add tabs to tabbedPane
         tabbedPane.addTab("Locations", locationsPanel);
         tabbedPane.addTab("Tags", tagsPanel);
-        tabbedPane.addTab("Settings", settingsPanel);
+        tabbedPane.addTab("Search", settingsPanel);
 
         leftPanel.add(tabbedPane, BorderLayout.CENTER);
 
