@@ -64,9 +64,7 @@ public class Taggat {
         JPanel locationsPanel = new JPanel();
         locationsPanel.setLayout(new BorderLayout());
         JPanel locationsTopPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel locationsLabel = new JLabel("Create");
-        JButton addLocationButton = new JButton("+");
-        locationsTopPanel.add(locationsLabel);
+        JButton addLocationButton = new JButton("Create");
         locationsTopPanel.add(addLocationButton);
         locationsPanel.add(locationsTopPanel, BorderLayout.NORTH);
         JPanel locationsContentPanel = new JPanel();
@@ -177,9 +175,7 @@ public class Taggat {
         JPanel tagsPanel = new JPanel();
         tagsPanel.setLayout(new BorderLayout());
         JPanel tagsTopPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel tagsLabel = new JLabel("Create");
-        JButton addTagButton = new JButton("+");
-        tagsTopPanel.add(tagsLabel);
+        JButton addTagButton = new JButton("Create");
         tagsTopPanel.add(addTagButton);
         tagsPanel.add(tagsTopPanel, BorderLayout.NORTH);
         tagsContentPanel = new JPanel();
@@ -191,7 +187,7 @@ public class Taggat {
             // Show input box and save button for new tag
             JTextField newTagField = new JTextField();
             newTagField.setPreferredSize(new Dimension(150, newTagField.getPreferredSize().height)); // Set preferred size
-            JButton saveTagButton = new JButton("Save Tag");
+            JButton saveTagButton = new JButton("Save");
 
             JPanel newTagPanel = new JPanel();
             newTagPanel.setLayout(new BoxLayout(newTagPanel, BoxLayout.X_AXIS));
@@ -258,27 +254,6 @@ public class Taggat {
             });
         });
 
-        // Delete Tag Button
-        JButton deleteTagButton = new JButton("Delete");
-        deleteTagButton.addActionListener(e -> {
-            if (selectedTag != null) {
-                for (Component comp : tagsContentPanel.getComponents()) {
-                    if (comp instanceof JLabel) {
-                        JLabel label = (JLabel) comp;
-                        if (label.getText().equals(selectedTag)) {
-                            tagsContentPanel.remove(label);
-                            selectedTag = null;
-                            selectedTagColor = null;
-                            tagsContentPanel.revalidate();
-                            tagsContentPanel.repaint();
-                            break;
-                        }
-                    }
-                }
-            }
-        });
-        tagsTopPanel.add(deleteTagButton);
-
         // Update Tag Button
         JButton updateTagButton = new JButton("Update");
         updateTagButton.addActionListener(e -> {
@@ -317,6 +292,27 @@ public class Taggat {
             }
         });
         tagsTopPanel.add(updateTagButton);
+
+        // Delete Tag Button
+        JButton deleteTagButton = new JButton("Delete");
+        deleteTagButton.addActionListener(e -> {
+            if (selectedTag != null) {
+                for (Component comp : tagsContentPanel.getComponents()) {
+                    if (comp instanceof JLabel) {
+                        JLabel label = (JLabel) comp;
+                        if (label.getText().equals(selectedTag)) {
+                            tagsContentPanel.remove(label);
+                            selectedTag = null;
+                            selectedTagColor = null;
+                            tagsContentPanel.revalidate();
+                            tagsContentPanel.repaint();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+        tagsTopPanel.add(deleteTagButton);
 
         // Apply Button to persist tag-to-photo relationships
         JButton applyButton = new JButton("Apply");
